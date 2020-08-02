@@ -1,0 +1,11 @@
+server:
+  port: 8887
+  servlet:
+    context-path: /spring-boot-template-netty-client
+spring:
+  application:
+    name: spring-boot-template-netty-client
+  profiles:
+    active: dev
+
+
