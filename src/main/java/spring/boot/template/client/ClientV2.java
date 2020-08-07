@@ -5,6 +5,7 @@ import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
 import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.nio.NioChannelOption;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
@@ -31,6 +32,8 @@ public class ClientV2 {
         bootstrap.channel(NioSocketChannel.class);
         bootstrap.group(new NioEventLoopGroup());
 
+        //超时调整
+        bootstrap.option(NioChannelOption.CONNECT_TIMEOUT_MILLIS, 10 * 1000);
         RequestPendingCenter requestPendingCenter = new RequestPendingCenter();
         bootstrap.handler(new ChannelInitializer<NioSocketChannel>() {
             @Override
